@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 package App::MTO::Command;
+
 use base 'App::Cmd::Command';
 
 binmode(STDIN, ":utf8");
