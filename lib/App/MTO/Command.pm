@@ -4,7 +4,7 @@ package App::MTO::Command;
 
 use base 'App::Cmd::Command';
 
-binmode(STDIN, ":utf8");
-binmode(STDOUT, ":utf8");
+binmode(STDIN, ":encoding(UTF-8)");
+binmode(STDOUT, ":encoding(UTF-8)");
 
 sub mto_home { '/Users/michael/code/mto' }

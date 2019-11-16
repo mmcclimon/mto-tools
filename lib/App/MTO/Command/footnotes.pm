@@ -23,7 +23,7 @@ sub execute ($self, $opt, $args) {
 
   my $fn_num = 1;
   for my $line ($path->lines({ chomp => 1 })) {
-    next if /^\s*$/;
+    next if $line =~ /^\s*$/;
     printf(qq{  \$fn%d =  array("%d", "%s");\n},
       $fn_num, $fn_num, $line
     );

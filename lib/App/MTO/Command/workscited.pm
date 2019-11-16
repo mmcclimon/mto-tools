@@ -62,7 +62,7 @@ sub _do_final ($self, $path) {
     my ($var, $seen, $short, $full)  = split /\t/, $line;
 
     push @vars, $var;
-    push @list, sprintf(q{  $%s =  array(%s, "%s", "%s");\n},
+    push @list, sprintf(q{  $%s =  array(%s, "%s", "%s");},
       $var, $seen, $short, $full
     );
   }
