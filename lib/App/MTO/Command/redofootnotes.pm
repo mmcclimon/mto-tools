@@ -24,7 +24,7 @@ sub execute ($self, $opt, $args) {
   # do footnotes
   say "will edit $path in-place...";
   my $fn_num = 1;
-  $path->edit_lines(sub { s/fnXX/"fn" . $fn_num++/ge });
+  $path->edit_lines_utf8(sub { s/fnXX/"fn" . $fn_num++/ge });
   say "done";
 }
 

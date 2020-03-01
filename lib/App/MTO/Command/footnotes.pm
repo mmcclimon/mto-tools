@@ -21,8 +21,10 @@ sub execute ($self, $opt, $args) {
   my $fn = shift @$args;
   my $path = Path::Tiny::path($fn);
 
+  binmode(STDOUT, ':encoding(UTF-8)');
+
   my $fn_num = 1;
-  for my $line ($path->lines({ chomp => 1 })) {
+  for my $line ($path->lines_utf8({ chomp => 1 })) {
     next if $line =~ /^\s*$/;
     printf(qq{  \$fn%d =  array("%d", "%s");\n},
       $fn_num, $fn_num, $line

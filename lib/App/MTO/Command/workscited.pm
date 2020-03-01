@@ -27,6 +27,8 @@ sub execute ($self, $opt, $args) {
   my $fn = shift @$args;
   my $path = Path::Tiny::path($fn);
 
+  binmode(STDOUT, ':encoding(UTF-8)');
+
   return $self->_do_raw($path)   if $opt->raw;
   return $self->_do_final($path) if $opt->final;
 
@@ -35,7 +37,7 @@ sub execute ($self, $opt, $args) {
 
 sub _do_raw ($self, $path) {
   my $last = '';
-  for my $line ($path->lines({ chomp => 1 })) {
+  for my $line ($path->lines_utf8({ chomp => 1 })) {
     next if $line =~ /^\s*$/;
 
     my ($author)    = $line =~ /^(\w*),/;
@@ -57,7 +59,7 @@ sub _do_raw ($self, $path) {
 sub _do_final ($self, $path) {
   my (@vars, @list);
 
-  for my $line ($path->lines({ chomp => 1 })) {
+  for my $line ($path->lines_utf8({ chomp => 1 })) {
     next if $line =~ /^\s*$/;
     my ($var, $seen, $short, $full)  = split /\t/, $line;
 

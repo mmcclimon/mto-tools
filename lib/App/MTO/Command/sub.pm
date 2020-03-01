@@ -22,7 +22,7 @@ sub execute ($self, $opt, $args) {
   my $path = Path::Tiny::path($fn);
 
   my $fn_num = 1;
-  for ($path->lines) {
+  for ($path->lines_utf8) {
     # footnotes
     s/fnXX/"fn" . $fn_num++/ge;
 
