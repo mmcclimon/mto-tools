@@ -40,12 +40,14 @@ sub _do_raw ($self, $path) {
   for my $line ($path->lines_utf8({ chomp => 1 })) {
     next if $line =~ /^\s*$/;
 
-    my ($author)    = $line =~ /^(\w*),/;
+    my ($author)    = $line =~ /^([-\w&; ]*),/;
     my ($year)      = $line =~ /.\s(\d{4}[a-f]?).*?\./;
     my ($full_auth) = $line =~ /^(.*?)\./;
 
     my $seen = $full_auth eq $last;
     $last = $full_auth;
+
+    no warnings 'uninitialized';
 
     printf("\n%s_%s\t%s\t%s %s\t%s\n",
       lc $author, $year,

@@ -5,6 +5,7 @@ use App::MTO -command;
 use v5.24;
 use warnings;
 use experimental 'signatures';
+use utf8;
 
 sub usage_desc { "%c sub FILE" }
 
