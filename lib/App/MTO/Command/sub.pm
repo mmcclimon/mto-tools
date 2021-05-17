@@ -10,6 +10,7 @@ use utf8;
 sub usage_desc { "%c sub FILE" }
 
 sub opt_spec {
+  [ 'utf',    'leave most special chars' ],
   [ 'angles', 'replace non-php-tag < and >' ],
 }
 
@@ -30,49 +31,53 @@ sub execute ($self, $opt, $args) {
     # raw ampersands
     s/ & / &amp; /g;
 
-    # accented characters
-    s/á/&aacute;/g;
-    s/é/&eacute;/g;
-    s/í/&iacute;/g;
-    s/ó/&oacute;/g;
-    s/ú/&uacute;/g;
+    unless ($opt->utf) {
+      # accented characters
+      s/á/&aacute;/g;
+      s/é/&eacute;/g;
+      s/í/&iacute;/g;
+      s/ó/&oacute;/g;
+      s/ú/&uacute;/g;
 
-    s/Á/&Aacute;/g;
-    s/É/&Eacute;/g;
-    s/Í/&Iacute;/g;
-    s/Ó/&Oacute;/g;
-    s/Ú/&Uacute;/g;
+      s/Á/&Aacute;/g;
+      s/É/&Eacute;/g;
+      s/Í/&Iacute;/g;
+      s/Ó/&Oacute;/g;
+      s/Ú/&Uacute;/g;
 
-    s/à/&agrave;/g;
-    s/è/&egrave;/g;
-    s/ù/&ugrave;/g;
-    s/ç/&ccedil;/g;
+      s/à/&agrave;/g;
+      s/è/&egrave;/g;
+      s/ù/&ugrave;/g;
+      s/ç/&ccedil;/g;
 
-    s/ä/&auml;/g;
-    s/ë/&euml;/g;
-    s/ï/&iuml;/g;
-    s/ö/&ouml;/g;
-    s/ü/&uuml;/g;
+      s/ä/&auml;/g;
+      s/ë/&euml;/g;
+      s/ï/&iuml;/g;
+      s/ö/&ouml;/g;
+      s/ü/&uuml;/g;
 
-    s/Ä/&Auml;/g;
-    s/Ë/&Euml;/g;
-    s/Ï/&Iuml;/g;
-    s/Ö/&Ouml;/g;
-    s/Ü/&Uuml;/g;
+      s/Ä/&Auml;/g;
+      s/Ë/&Euml;/g;
+      s/Ï/&Iuml;/g;
+      s/Ö/&Ouml;/g;
+      s/Ü/&Uuml;/g;
 
-    s/ß/&szlig;/g;
-    s/ê/&ecirc;/g;
-    s/ĭ/&#301;/g; # i with breve
+      s/ß/&szlig;/g;
+      s/ê/&ecirc;/g;
+      s/ĭ/&#301;/g; # i with breve
 
-    # dashes & quotes
-    s/‘/&#8216;/g;
-    s/’/&#8217;/g;
-    s/“/&#8220;/g;
-    s/”/&#8221;/g;
-    s/–/&#8211;/g; #en-dash
-    s/—/&#8212;/g; #em-dash
+      # dashes & quotes
+      s/‘/&#8216;/g;
+      s/’/&#8217;/g;
+      s/“/&#8220;/g;
+      s/”/&#8221;/g;
+      s/–/&#8211;/g; #en-dash
+      s/—/&#8212;/g; #em-dash
+    }
+
     s/ …/&nbsp;.&nbsp;.&nbsp;. /g;
     s/…/.&nbsp;.&nbsp;. /g;
+    s/ \. \. \./&nbsp;.&nbsp;.&nbsp;./g;
 
     if ($opt->angles) {
       # angle brackets not part of <? ?> tags
