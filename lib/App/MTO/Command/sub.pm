@@ -2,9 +2,7 @@ package App::MTO::Command::sub;
 # ABSTRACT: munge article text
 
 use App::MTO -command;
-use v5.24;
-use warnings;
-use experimental 'signatures';
+use v5.36;
 use utf8;
 
 sub usage_desc { "%c sub FILE" }

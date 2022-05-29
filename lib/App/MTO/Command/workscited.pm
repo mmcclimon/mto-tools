@@ -2,9 +2,7 @@ package App::MTO::Command::workscited;
 # ABSTRACT: munge works cited
 
 use App::MTO -command;
-use v5.24;
-use warnings;
-use experimental 'signatures';
+use v5.36;
 
 sub usage_desc { "%c wc %o FILE" }
 

@@ -2,9 +2,7 @@ package App::MTO::Command::serve;
 # ABSTRACT: serve up a file
 
 use App::MTO -command;
-use v5.24;
-use warnings;
-use experimental 'signatures';
+use v5.36;
 
 sub usage_desc { "%c serve" }
 

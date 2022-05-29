@@ -1,8 +1,7 @@
 #!/usr/bin/env perl
 # PODNAME: mto
 
-use warnings;
-use strict;
+use v5.36;
 use App::MTO;
 
 App::MTO->run;
